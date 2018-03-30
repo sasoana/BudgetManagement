@@ -44,19 +44,22 @@ public class MemberRepository {
 		m.setId(nextId);
 		nextId++;
 		members.add(m);
-	 	try{
-	 		FileWriter fileWriter = null;
-	 		BufferedWriter bufferedWriter = null;
+	 }
 
-	 		fileWriter = new FileWriter(filenameMember);
-	 		bufferedWriter = new BufferedWriter(fileWriter);
-	 		for (Member member :  members) {
-				bufferedWriter.write(member.getName() + ";" + member.getId() + "\n");
-			}
-			bufferedWriter.close();
-	 	}catch(Exception ex){
-	 		System.err.println("Error when writing to file.");
-	 	}
+	 public void writeToFile() {
+		 try{
+			 FileWriter fileWriter = null;
+			 BufferedWriter bufferedWriter = null;
+
+			 fileWriter = new FileWriter(filenameMember);
+			 bufferedWriter = new BufferedWriter(fileWriter);
+			 for (Member member :  members) {
+				 bufferedWriter.write(member.getName() + ";" + member.getId() + "\n");
+			 }
+			 bufferedWriter.close();
+		 }catch(Exception ex){
+			 System.err.println("Error when writing to file.");
+		 }
 	 }
 
 	 public Integer getIdForMember(String name) {

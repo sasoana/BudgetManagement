@@ -32,6 +32,7 @@ public class MemberController {
 
         if (validateName(member)) {
             mr.addMember(new Member(member));
+            mr.writeToFile();
             return true;
         }
         return false;

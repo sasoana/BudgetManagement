@@ -1,6 +1,5 @@
 package ui;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -59,13 +58,6 @@ public class UI {
 		System.out.println(menu);
 	}
 
-	private boolean validateName(String name) throws InvalidNameException {
-		if (!name.matches(".*[a-z].*")) {
-			throw new InvalidNameException();
-		}
-		return true;
-	}
-
 	private boolean validateType(String type) throws InvalidTypeException {
 		if (type.equals("income") || type.equals("cost")) {
 			return true;
@@ -93,18 +85,10 @@ public class UI {
 				System.out.println("Enter name:");
 				String name = in.nextLine();
 				try {
-					if (validateName(name)) {
-						Member member = new Member(name);
-						if (memberController.getIdForMember(name) != -1) {
-							System.out.println("Name already exists. Give a unique name.");
-							continue;
-						}
-						memberController.addMember(member);
-						System.out.println("Member added successfully.");
-					}
+					memberController.addMember(name);
+					System.out.println("Member added successfully.");
 				} catch (InvalidNameException e) {
-					System.out.println("Invalid name. Must contain letter.");
-					continue;
+					System.out.println(e.getMsg());
 				}
 			} else
 			if(cmd.equals("2")) {
@@ -120,7 +104,7 @@ public class UI {
 								int valueInt = Integer.parseInt(valueS);
 								System.out.println("Enter the name of the member:");
 								String name = in.nextLine();
-								try {
+								/*try {
 									if (validateName(name)) {
 										Integer id = memberController.getIdForMember(name);
 										if (id == -1) {
@@ -133,7 +117,7 @@ public class UI {
 									}
 								} catch (InvalidNameException nameException) {
 									System.out.println("Invalid name. Must contain at least one letter.");
-								}
+								}*/
 							}
 						} catch (InvalidBudgetException budgetException) {
 							System.out.println("Invalid value. Must be an integer.");
@@ -147,7 +131,7 @@ public class UI {
 			{
 				System.out.println("Enter the name of the member:");
 				String name = in.nextLine();
-				try {
+				/*try {
 					if (validateName(name)) {
 						Integer id = memberController.getIdForMember(name);
 						if (id == -1) {
@@ -165,7 +149,7 @@ public class UI {
 				} catch (InvalidNameException nameException) {
 					System.out.println("Invalid name. Must contain at least one letter!");
 					continue;
-				}
+				}*/
 			} else {
 				System.out.println("Invalid command!");
 			}

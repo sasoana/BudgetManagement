@@ -2,12 +2,12 @@ import controller.EntryController;
 import repository.EntryRepository;
 import repository.MemberRepository;
 import controller.MemberController;
-import ui.UI;;
+import ui.UI;
 
 public class App {
 	public static void main(String[] args) {
 		
-		MemberRepository memberRepository = new MemberRepository();
+		MemberRepository memberRepository = new MemberRepository("membersF.txt");
 		EntryRepository entryRepository = new EntryRepository();
 
 		MemberController memberController = new MemberController(memberRepository);

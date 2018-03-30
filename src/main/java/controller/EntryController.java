@@ -2,7 +2,6 @@ package controller;
 
 import model.Entry;
 import repository.EntryRepository;
-import repository.MemberRepository;
 
 import java.util.ArrayList;
 import java.util.List;

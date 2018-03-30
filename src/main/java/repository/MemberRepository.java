@@ -5,28 +5,20 @@ import java.io.BufferedReader;
 import model.*;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import exceptions.InvalidBudgetException;
-import exceptions.InvalidNameException;
-import exceptions.InvalidTypeException;
 
 public class MemberRepository {
 	private List<Member> members = new ArrayList<Member>();
 
 	private static Integer nextId;
-	private final static String filenameMember = "membersF.txt";
+	private static String filenameMember;
 
 	@SuppressWarnings("resource")
-	public MemberRepository() {
+	public MemberRepository(String filename) {
+		this.filenameMember = filename;
 		nextId = 0;
 		try{
 			FileReader fileReader = null;
@@ -74,6 +66,10 @@ public class MemberRepository {
 		}
 
 		return -1;
+	 }
+
+	 public List<Member> getMembers() {
+	 	return members;
 	 }
 
 }

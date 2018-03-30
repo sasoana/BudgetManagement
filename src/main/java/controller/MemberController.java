@@ -45,4 +45,7 @@ public class MemberController {
     public List<Member> getMembers() {
         return mr.getMembers();
     }
+    public void setMembers(List<Member> members) {
+        mr.setMembers(members);
+    }
 }

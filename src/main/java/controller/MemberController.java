@@ -25,6 +25,9 @@ public class MemberController {
         if (name.length() > 20) {
             throw new InvalidNameException("Name should have maximum 20 letters.");
         }
+        if (name.length() < 3) {
+            throw new InvalidNameException("Name should have minimum 3 letters.");
+        }
         return true;
     }
 
@@ -32,7 +35,6 @@ public class MemberController {
 
         if (validateName(member)) {
             mr.addMember(new Member(member));
-            mr.writeToFile();
             return true;
         }
         return false;
@@ -47,5 +49,9 @@ public class MemberController {
     }
     public void setMembers(List<Member> members) {
         mr.setMembers(members);
+    }
+
+    public void writeToFile() {
+        mr.writeToFile();
     }
 }

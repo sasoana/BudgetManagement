@@ -157,6 +157,7 @@ public class UI {
 			printMenu();
 			cmd = in.nextLine();
 		}
+		memberController.writeToFile();
 	}
 }
 

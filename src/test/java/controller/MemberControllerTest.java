@@ -25,7 +25,7 @@ public class MemberControllerTest {
     @Test
     public void testAddMemberValidName() throws Exception {
         memberController.setMembers(new ArrayList<Member>());
-        String name = "D";
+        String name = "Diana";
         Assert.assertTrue(memberController.addMember(name));
         Assert.assertEquals(1, memberController.getMembers().size());
     }
@@ -101,7 +101,7 @@ public class MemberControllerTest {
     @Test
     public void testAddTC8() throws Exception {
         memberController.setMembers(new ArrayList<Member>());
-        String name = "Dia";
+        String name = "Di";
         Assert.assertTrue(memberController.addMember(name));
         Assert.assertEquals(1, memberController.getMembers().size());
     }

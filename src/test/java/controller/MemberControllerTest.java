@@ -1,6 +1,7 @@
 package controller;
 
 import exceptions.InvalidNameException;
+import junit.framework.TestCase;
 import model.Member;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,12 +13,12 @@ import java.util.ArrayList;
 /**
  * Created by oana on 3/31/2018.
  */
-public class MemberControllerTest {
+public class MemberControllerTest{
 
     private MemberController memberController;
 
     @Before
-    public void setRepo() {
+    public void setUp() throws Exception{
         MemberRepository memberRepository = new MemberRepository("src/test/java/initMembers.txt");
         this.memberController = new MemberController(memberRepository);
     }
@@ -101,7 +102,7 @@ public class MemberControllerTest {
     @Test
     public void testAddTC8() throws Exception {
         memberController.setMembers(new ArrayList<Member>());
-        String name = "Di";
+        String name = "Dia";
         Assert.assertTrue(memberController.addMember(name));
         Assert.assertEquals(1, memberController.getMembers().size());
     }

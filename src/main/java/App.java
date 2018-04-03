@@ -8,10 +8,10 @@ public class App {
 	public static void main(String[] args) {
 		
 		MemberRepository memberRepository = new MemberRepository("membersF.txt");
-		EntryRepository entryRepository = new EntryRepository();
+		EntryRepository entryRepository = new EntryRepository("budgetF.txt");
 
 		MemberController memberController = new MemberController(memberRepository);
-		EntryController entryController = new EntryController(entryRepository);
+		EntryController entryController = new EntryController(entryRepository, memberRepository);
 		
 		UI console = new UI(memberController, entryController);
 		console.Run();

@@ -7,3 +7,4 @@ cost;90;1
 cost;10;2
 cost;10;3
 income;5;4
+income;4;1

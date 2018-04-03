@@ -57,22 +57,6 @@ public class UI {
 		
 		System.out.println(menu);
 	}
-
-	private boolean validateType(String type) throws InvalidTypeException {
-		if (type.equals("income") || type.equals("cost")) {
-			return true;
-		}
-		throw new InvalidTypeException();
-	}
-
-	private boolean validateBudget(String value) throws InvalidBudgetException {
-		try {
-			Integer valueInt = Integer.parseInt(value);
-		} catch (Exception e) {
-			throw new InvalidBudgetException();
-		}
-		return true;
-	}
 	
 	public void Run()
 	{
@@ -95,36 +79,20 @@ public class UI {
 
 				System.out.println("Enter type:");
 				String type = in.nextLine();
+				System.out.println("Enter the value:");
+				String value = in.nextLine();
+				System.out.println("Enter the name of the member:");
+				String name = in.nextLine();
+
 				try {
-					if (validateType(type)) {
-						System.out.println("Enter the value:");
-						String valueS = in.nextLine();
-						try {
-							if (validateBudget(valueS)) {
-								int valueInt = Integer.parseInt(valueS);
-								System.out.println("Enter the name of the member:");
-								String name = in.nextLine();
-								/*try {
-									if (validateName(name)) {
-										Integer id = memberController.getIdForMember(name);
-										if (id == -1) {
-											System.out.println("Member does not exist.");
-										} else {
-											Entry e = new Entry(type, valueInt, id);
-											entryController.addEntry(e);
-											System.out.println("Entry added successfully.");
-										}
-									}
-								} catch (InvalidNameException nameException) {
-									System.out.println("Invalid name. Must contain at least one letter.");
-								}*/
-							}
-						} catch (InvalidBudgetException budgetException) {
-							System.out.println("Invalid value. Must be an integer.");
-						}
-					}
-				} catch (InvalidTypeException typeException) {
-					System.out.println("Invalid type. Must be income or cost.");
+					entryController.addEntry(type, value, name);
+					System.out.println("Entry added successfully.");
+				} catch (InvalidNameException e) {
+					System.out.println(e.getMsg());
+				} catch (InvalidBudgetException e) {
+					System.out.println(e.getMsg());
+				} catch (InvalidTypeException e) {
+					System.out.println(e.getMsg());
 				}
 			} else
 			if(cmd.equals("3"))

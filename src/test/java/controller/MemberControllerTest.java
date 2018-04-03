@@ -25,7 +25,7 @@ public class MemberControllerTest {
     @Test
     public void testAddMemberValidName() throws Exception {
         memberController.setMembers(new ArrayList<Member>());
-        String name = "Diana";
+        String name = "Di";
         Assert.assertTrue(memberController.addMember(name));
         Assert.assertEquals(1, memberController.getMembers().size());
     }

@@ -16,9 +16,10 @@ import java.util.stream.Collectors;
 public class EntryRepository {
     private List<Entry> entries = new ArrayList<Entry>();
 
-    private final static String filenameBudget = "budgetF.txt";
+    private final String filenameBudget;
 
-    public EntryRepository() {
+    public EntryRepository(String filename) {
+        this.filenameBudget = filename;
         try{
             FileReader fileReaderEntry = null;
             BufferedReader bufferedReaderEntry = null;
@@ -36,6 +37,22 @@ public class EntryRepository {
             }
         }catch(Exception ex){
             System.err.println("Error when loading from file.");
+        }
+    }
+
+    public void writeToFile() {
+        try{
+            FileWriter fileWriter = null;
+            BufferedWriter bufferedWriter = null;
+
+            fileWriter = new FileWriter(filenameBudget);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            for (Entry entry : entries) {
+                bufferedWriter.write(entry.getType() + ";" + entry.getValue() + ";" + entry.getIdMember() + "\n");
+            }
+            bufferedWriter.close();
+        }catch(Exception ex){
+            System.err.println("Error when writing to file.");
         }
     }
 

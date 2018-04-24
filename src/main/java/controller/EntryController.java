@@ -30,21 +30,32 @@ public class EntryController {
             throw new InvalidTypeException("Not a valid entry type.");
         }
         List<Member> members = memberRepository.getMembers();
+        if (members.size() == 0) {
+            throw new InvalidNameException("Members list is empty.");
+        } boolean found = false;
         for (Member member:members) {
-            if (!member.getName().equals(name))
-                throw new InvalidNameException("Member does not exist.");
+            if (member.getName().equals(name))
+                found = true;
         }
+        if (found == false)
+            throw new InvalidNameException("Member does not exist.");
+        Integer valueInt = 0;
         try {
-            Integer valueInt = Integer.parseInt(value);
-            if (valueInt < 0 ) throw new InvalidBudgetException("Value must be integer and positive.");
+            valueInt = Integer.parseInt(value);
         } catch (Exception e) {
-            throw new InvalidBudgetException("Value must be integer and positive.");
+            throw new InvalidBudgetException("Value must be integer.");
         }
+        if (valueInt < 0 )
+            throw new InvalidBudgetException("Value must be positive.");
         entryRepository.addEntry(new Entry(type, Integer.parseInt(value), memberRepository.getIdForMember(name)));
     }
 
     public List<Entry> getEntries() {
         return entryRepository.getAllEntries();
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entryRepository.setEntries(entries);
     }
 
     private boolean validateEntry(String type, String value, String name) throws InvalidTypeException, InvalidBudgetException, InvalidNameException {

@@ -36,7 +36,7 @@ public class MemberRepository {
 			}
 			nextId++;
 		}catch(Exception ex){
-			System.err.println("Error when loading from file.");
+			System.err.println(ex.getCause() + "Error when loading from file member.");
 		}
 	}
 

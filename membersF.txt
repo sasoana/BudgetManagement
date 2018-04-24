@@ -1,5 +1,2 @@
 Oana;1
 Diana;2
-Stefan;3
-Maria;4
-Ana;5

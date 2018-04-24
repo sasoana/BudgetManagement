@@ -1,1 +1,1 @@
-income;3;1
+income;1;1

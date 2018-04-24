@@ -36,7 +36,7 @@ public class EntryRepository {
                 this.entries.add(e);
             }
         }catch(Exception ex){
-            System.err.println("Error when loading from file.");
+            System.err.println(ex.getCause() + "Error when loading from file entry.");
         }
     }
 
@@ -73,6 +73,11 @@ public class EntryRepository {
 
     public List<Entry> getAllEntries(){
         return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+        writeToFile();
     }
 
     public List<Entry> getAllEntriesForMember(Integer id){
